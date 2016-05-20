@@ -1,0 +1,7 @@
+---
+
+- name: Restart gdm
+  service:
+    name: 'gdm3'
+    state: 'restarted'
+  when: gdm__restart_on_configuration_change | bool

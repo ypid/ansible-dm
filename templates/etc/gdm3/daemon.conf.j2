@@ -1,0 +1,38 @@
+# {{ ansible_managed }}
+#
+# GDM configuration storage
+#
+# See /usr/share/gdm/gdm.schemas for a list of available options.
+
+[daemon]
+
+{% if gdm__automatic_login_enabled | bool %}
+{%   if gdm__automatic_login_time_delay|int == 0 %}
+# Enabling automatic login
+AutomaticLoginEnable = true
+AutomaticLogin = {{ gdm__automatic_login_user_name | string }}
+{%   else %}
+# Enabling timed login
+TimedLoginEnable = true
+TimedLogin = {{ gdm__automatic_login_user_name | string }}
+TimedLoginDelay = {{ gdm__automatic_login_time_delay | string }}
+{%   endif %}
+{% endif %}
+
+[security]
+
+[xdmcp]
+
+[greeter]
+# Only include selected logins in the greeter
+IncludeAll = {{ gdm__greeter_include_all_users | bool | string | lower }}
+{% if gdm__greeter_include_users | length >= 1 %}
+Include = {{ gdm__greeter_include_users | list | join(",") }}
+{% endif %}
+
+[chooser]
+
+[debug]
+# More verbose logs
+# Additionally lets the X server dump core if it crashes
+Enable = {{ gdm__debuggign_enabled | bool | string | lower }}
