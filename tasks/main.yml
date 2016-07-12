@@ -13,6 +13,8 @@
   args:
     creates: '/etc/gdm3/daemon.conf.dpkg-divert'
 
+# update-alternatives --config x-session-manager
+
 - name: Configure GDM
   template:
     src: 'etc/gdm3/daemon.conf.j2'

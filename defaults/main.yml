@@ -1,14 +1,14 @@
 ---
+# .. vim: foldmarker=[[[,]]]:foldmethod=marker
+
 # Default variables
 # =================
 
 # .. contents:: Sections
 #    :local:
 #
-# .. Required packages (((
-#
 # ---------------------
-#   Required packages
+#   Required packages [[[1
 # ---------------------
 
 # .. envvar:: gdm__base_packages
@@ -17,12 +17,9 @@
 gdm__base_packages:
   - 'gdm3'
 
-# .. )))
 
-# .. User automatic login (((
-#
 # ------------------------
-#   User automatic login
+#   User automatic login [[[1
 # ------------------------
 
 # .. envvar:: gdm__automatic_login_enabled
@@ -44,12 +41,9 @@ gdm__automatic_login_user_name: 'user'
 # be logged in to give other users the chance to login as there user?
 gdm__automatic_login_time_delay: 0
 
-# .. )))
 
-# .. Greeter (((
-#
 # -----------
-#   Greeter
+#   Greeter [[[1
 # -----------
 #
 # .. warning:: Did not work when testing this feature with Debian Jessie.
@@ -66,26 +60,20 @@ gdm__greeter_include_all_users: False
 # Only include selected logins in the greeter.
 gdm__greeter_include_users: []
 
-# .. )))
 
-# .. Debugging (((
-#
 # -------------
-#   Debugging
+#   Debugging [[[1
 # -------------
 
-# .. envvar:: gdm__debuggign_enabled
+# .. envvar:: gdm__debugging_enabled
 #
 # More verbose logs.
 # Additionally lets the X server dump core if it crashes.
-gdm__debuggign_enabled: False
+gdm__debugging_enabled: False
 
-# .. )))
 
-# .. GDM restart (((
-#
 # ---------------
-#   GDM restart
+#   GDM restart [[[1
 # ---------------
 
 # .. envvar:: gdm__restart_on_configuration_change
@@ -96,5 +84,3 @@ gdm__debuggign_enabled: False
 # .. warning:: This will kill active user sessions!
 #
 gdm__restart_on_configuration_change: False
-
-# .. )))

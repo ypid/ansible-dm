@@ -35,4 +35,4 @@ Include = {{ gdm__greeter_include_users | list | join(",") }}
 [debug]
 # More verbose logs
 # Additionally lets the X server dump core if it crashes
-Enable = {{ gdm__debuggign_enabled | bool | string | lower }}
+Enable = {{ gdm__debugging_enabled | bool | string | lower }}
