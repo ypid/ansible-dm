@@ -1,86 +1,153 @@
 ---
 # .. vim: foldmarker=[[[,]]]:foldmethod=marker
 
-# Default variables
-# =================
+# ypid.dm default variables [[[
+# =============================
 
 # .. contents:: Sections
 #    :local:
 #
-# ---------------------
-#   Required packages [[[1
-# ---------------------
+# .. include:: includes/all.rst
 
-# .. envvar:: gdm__base_packages
+
+# Selected display manager [[[
+# ----------------------------
+
+# .. envvar:: dm__name [[[
 #
-# List of base packages to install.
-gdm__base_packages:
-  - 'gdm3'
+# Which display manager should be used?
+#
+# Supported display managers:
+#
+# * ``gdm``
+# * ``lightdm``
+#
+# Note the different display managers support a different set of features so
+# not all configuration that this role provides will have an effect depending on
+# this choice.
+dm__name: 'lightdm'
 
+                                                                   # ]]]
+# Required packages [[[
+# ---------------------
 
+# .. envvar:: dm__package_map [[[
+#
+# :envvar:`dm__name` to base core package name mapping.
+dm__package_map:
+  lightdm: 'lightdm'
+  gdm: 'gdm3'
+                                                                   # ]]]
+
+# .. envvar:: dm__packages [[[
+#
+# List of packages to install regardless of the selected display manager.
+dm__packages: []
+
+                                                                   # ]]]
+# .. envvar:: dm__lightdm_packages [[[
+#
+# Additional list of packages to install when LightDM_ is selected.
+dm__lightdm_packages: []
+
+                                                                   # ]]]
+# .. envvar:: dm__gdm_packages [[[
+#
+# Additional list of packages to install when GDM_ is selected.
+dm__gdm_packages:
+  - 'libpam-gnome-keyring'
+
+                                                                   # ]]]
+                                                                   # ]]]
+                                                                   # ]]]
+# User automatic login [[[
 # ------------------------
-#   User automatic login [[[1
-# ------------------------
 
-# .. envvar:: gdm__automatic_login_enabled
+# .. envvar:: dm__automatic_login_enabled [[[
 #
 # Should GDM do an automatic login for the user configured via
-# ``gdm__automatic_login_user_name``?
-gdm__automatic_login_enabled: False
+# :envvar:`dm__automatic_login_user_name`?
+dm__automatic_login_enabled: False
 
-
-# .. envvar:: gdm__automatic_login_user_name
+                                                                   # ]]]
+# .. envvar:: dm__automatic_login_user_name [[[
 #
 # Name of the user which should be automatically logged in.
-gdm__automatic_login_user_name: 'user'
+dm__automatic_login_user_name: 'user'
 
-
-# .. envvar:: gdm__automatic_login_time_delay
+                                                                   # ]]]
+# .. envvar:: dm__automatic_login_time_delay [[[
 #
-# How long should GDM what until ``gdm__automatic_login_user_name`` is going to
+# How long should GDM what until :envvar:`dm__automatic_login_user_name` is going to
 # be logged in to give other users the chance to login as there user?
-gdm__automatic_login_time_delay: 0
-
-
-# -----------
-#   Greeter [[[1
+dm__automatic_login_time_delay: 0
+                                                                   # ]]]
+                                                                   # ]]]
+# Greeter [[[
 # -----------
 #
 # .. warning:: Did not work when testing this feature with Debian Jessie.
 #
 
-# .. envvar:: gdm__user_automatic_login
+# .. envvar:: dm__greeter_include_all_users [[[
 #
 # Only include selected logins in the greeter.
-gdm__greeter_include_all_users: False
+dm__greeter_include_all_users: False
 
-
-# .. envvar:: gdm__greeter_include_users
+                                                                   # ]]]
+# .. envvar:: dm__greeter_include_users [[[
 #
 # Only include selected logins in the greeter.
-gdm__greeter_include_users: []
-
-
+dm__greeter_include_users: []
+                                                                   # ]]]
+                                                                   # ]]]
+# Debugging [[[
 # -------------
-#   Debugging [[[1
-# -------------
 
-# .. envvar:: gdm__debugging_enabled
+# .. envvar:: dm__debugging_enabled [[[
 #
 # More verbose logs.
 # Additionally lets the X server dump core if it crashes.
-gdm__debugging_enabled: False
+dm__debugging_enabled: False
+                                                                   # ]]]
+                                                                   # ]]]
+# Display manager restart [[[
+# ---------------------------
 
-
-# ---------------
-#   GDM restart [[[1
-# ---------------
-
-# .. envvar:: gdm__restart_on_configuration_change
+# .. envvar:: dm__restart_on_configuration_change [[[
 #
-# Should GDM be restarted when the configuration is changed?
+# Should the display manager be restarted when the configuration is changed?
 # Useful for testing.
 #
 # .. warning:: This will kill active user sessions!
 #
-gdm__restart_on_configuration_change: False
+dm__restart_on_configuration_change: False
+                                                                   # ]]]
+                                                                   # ]]]
+# Session manager [[[
+# -------------------
+
+# .. envvar:: dm__session_manager [[[
+#
+# File to the executable session manager file. If given, it will be configured
+# as the default session manager.
+#
+# You can check the available session managers using the
+# :command:`update-alternatives --list x-session-manager`.
+#
+# If this variable is set to the special value ``{{ omit }}``, the
+# configuration is not altered.
+dm__session_manager: '{{ omit }}'
+                                                                   # ]]]
+                                                                   # ]]]
+# Paths [[[
+# ---------
+
+# .. envvar:: dm__binary_path [[[
+#
+# Path to the executable display manager file. This is used to set the default
+# display manager for the X server.
+dm__binary_path: '/usr/sbin/{{ dm__package_map[dm__name] }}'
+                                                                   # ]]]
+                                                                   # ]]]
+                                                                   # ]]]

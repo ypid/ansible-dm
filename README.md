@@ -35,10 +35,10 @@ List of default variables available in the inventory:
 #   Required packages
 # ---------------------
 
-# .. envvar:: gdm__base_packages
+# .. envvar:: dm__base_packages
 #
 # List of base packages to install.
-gdm__base_packages:
+dm__base_packages:
   - 'gdm3'
 
 # .. )))
@@ -49,24 +49,24 @@ gdm__base_packages:
 #   User automatic login
 # ------------------------
 
-# .. envvar:: gdm__automatic_login_enabled
+# .. envvar:: dm__automatic_login_enabled
 #
 # Should GDM do an automatic login for the user configured via
-# ``gdm__automatic_login_user_name``?
-gdm__automatic_login_enabled: False
+# ``dm__automatic_login_user_name``?
+dm__automatic_login_enabled: False
 
 
-# .. envvar:: gdm__automatic_login_user_name
+# .. envvar:: dm__automatic_login_user_name
 #
 # Name of the user which should be automatically logged in.
-gdm__automatic_login_user_name: 'user'
+dm__automatic_login_user_name: 'user'
 
 
-# .. envvar:: gdm__automatic_login_time_delay
+# .. envvar:: dm__automatic_login_time_delay
 #
-# How long should GDM what until ``gdm__automatic_login_user_name`` is going to
+# How long should GDM what until ``dm__automatic_login_user_name`` is going to
 # be logged in to give other users the chance to login as there user?
-gdm__automatic_login_time_delay: 0
+dm__automatic_login_time_delay: 0
 
 # .. )))
 
@@ -79,16 +79,16 @@ gdm__automatic_login_time_delay: 0
 # .. warning:: Did not work when testing this feature with Debian Jessie.
 #
 
-# .. envvar:: gdm__user_automatic_login
+# .. envvar:: dm__user_automatic_login
 #
 # Only include selected logins in the greeter.
-gdm__greeter_include_all_users: False
+dm__greeter_include_all_users: False
 
 
-# .. envvar:: gdm__greeter_include_users
+# .. envvar:: dm__greeter_include_users
 #
 # Only include selected logins in the greeter.
-gdm__greeter_include_users: []
+dm__greeter_include_users: []
 
 # .. )))
 
@@ -98,11 +98,11 @@ gdm__greeter_include_users: []
 #   Debugging
 # -------------
 
-# .. envvar:: gdm__debuggign_enabled
+# .. envvar:: dm__debuggign_enabled
 #
 # More verbose logs.
 # Additionally lets the X server dump core if it crashes.
-gdm__debuggign_enabled: False
+dm__debuggign_enabled: False
 
 # .. )))
 
@@ -112,14 +112,14 @@ gdm__debuggign_enabled: False
 #   GDM restart
 # ---------------
 
-# .. envvar:: gdm__restart_on_configuration_change
+# .. envvar:: dm__restart_on_configuration_change
 #
 # Should GDM be restarted when the configuration is changed?
 # Useful for testing.
 #
 # .. warning:: This will kill active user sessions!
 #
-gdm__restart_on_configuration_change: False
+dm__restart_on_configuration_change: False
 
 # .. )))
 ```

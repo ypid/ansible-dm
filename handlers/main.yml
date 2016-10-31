@@ -4,4 +4,10 @@
   service:
     name: 'gdm3'
     state: 'restarted'
-  when: gdm__restart_on_configuration_change | bool
+  when: dm__restart_on_configuration_change | bool
+
+- name: Restart lightdm
+  service:
+    name: 'lightdm'
+    state: 'restarted'
+  when: dm__restart_on_configuration_change | bool

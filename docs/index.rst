@@ -1,6 +1,6 @@
-.. _ypid.gdm:
+.. _ypid.dm:
 
-Ansible role: ypid.gdm
+Ansible role: ypid.dm
 ===============================
 
 .. toctree::

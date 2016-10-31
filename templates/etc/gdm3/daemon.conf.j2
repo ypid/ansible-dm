@@ -6,16 +6,16 @@
 
 [daemon]
 
-{% if gdm__automatic_login_enabled | bool %}
-{%   if gdm__automatic_login_time_delay|int == 0 %}
+{% if dm__automatic_login_enabled | bool %}
+{%   if dm__automatic_login_time_delay|int == 0 %}
 # Enabling automatic login
 AutomaticLoginEnable = true
-AutomaticLogin = {{ gdm__automatic_login_user_name | string }}
+AutomaticLogin = {{ dm__automatic_login_user_name | string }}
 {%   else %}
 # Enabling timed login
 TimedLoginEnable = true
-TimedLogin = {{ gdm__automatic_login_user_name | string }}
-TimedLoginDelay = {{ gdm__automatic_login_time_delay | string }}
+TimedLogin = {{ dm__automatic_login_user_name | string }}
+TimedLoginDelay = {{ dm__automatic_login_time_delay | string }}
 {%   endif %}
 {% endif %}
 
@@ -25,9 +25,9 @@ TimedLoginDelay = {{ gdm__automatic_login_time_delay | string }}
 
 [greeter]
 # Only include selected logins in the greeter
-IncludeAll = {{ gdm__greeter_include_all_users | bool | string | lower }}
-{% if gdm__greeter_include_users | length >= 1 %}
-Include = {{ gdm__greeter_include_users | list | join(",") }}
+IncludeAll = {{ dm__greeter_include_all_users | bool | string | lower }}
+{% if dm__greeter_include_users | length >= 1 %}
+Include = {{ dm__greeter_include_users | list | join(",") }}
 {% endif %}
 
 [chooser]
@@ -35,4 +35,4 @@ Include = {{ gdm__greeter_include_users | list | join(",") }}
 [debug]
 # More verbose logs
 # Additionally lets the X server dump core if it crashes
-Enable = {{ gdm__debugging_enabled | bool | string | lower }}
+Enable = {{ dm__debugging_enabled | bool | string | lower }}

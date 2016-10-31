@@ -1,0 +1,17 @@
+---
+# vim: foldmarker=[[[,]]]:foldmethod=marker
+
+- name: Divert LightDM configuration
+  command: dpkg-divert --quiet --local --divert "/etc/lightdm/lightdm.conf.dpkg-divert"
+           --rename "/etc/lightdm/lightdm.conf"
+  args:
+    creates: '/etc/lightdm/lightdm.conf.dpkg-divert'
+
+- name: Configure LightDM
+  template:
+    src: 'etc/lightdm/lightdm.conf.j2'
+    dest: '/etc/lightdm/lightdm.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: [ 'Restart lightdm' ]
