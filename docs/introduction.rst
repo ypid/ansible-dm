@@ -1,8 +1,10 @@
 Introduction
 ============
 
-Configure the `GNOME Display Manager <https://en.wikipedia.org/wiki/GNOME_Display_Manager>`_.
+Configure a display manage. Support options are:
 
+* `GNOME Display Manager <https://en.wikipedia.org/wiki/GNOME_Display_Manager>`_.
+* `LightDM <https://en.wikipedia.org/wiki/LightDM>`_.
 
 Features
 ~~~~~~~~
