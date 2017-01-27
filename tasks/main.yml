@@ -1,25 +1,46 @@
 ---
+# vim: foldmarker=[[[,]]]:foldmethod=marker
 
-- name: Ensure required packages are installed
-  apt:
+- name: Ensure specified packages are in there desired state
+  package:
     name: '{{ item }}'
-    state: 'latest'
-    install_recommends: False
-  with_flattened: '{{ gdm__base_packages }}'
+    state: 'present'
+  with_flattened:
+    - '{{ dm__packages }}'
+    - '{{ dm__package_map[dm__name] }}'
+    - '{{ dm__lightdm_packages if (dm__name == "lightdm") else [] }}'
+    - '{{ dm__gdm_packages if (dm__name == "gdm") else [] }}'
+  tags: [ 'role::dm:pkg' ]
 
-- name: Divert GDM configuration
-  command: dpkg-divert --quiet --local --divert "/etc/gdm3/daemon.conf.dpkg-divert"
-           --rename "/etc/gdm3/daemon.conf"
-  args:
-    creates: '/etc/gdm3/daemon.conf.dpkg-divert'
+- include: 'gdm.yml'
+  when: (dm__name == "gdm")
 
-# update-alternatives --config x-session-manager
+- include: 'lightdm.yml'
+  when: (dm__name == "lightdm")
 
-- name: Configure GDM
+- name: Configure default display manager in debconf
+  debconf:
+    name: 'shared'
+    question: 'shared/default-x-display-manager'
+    vtype: 'select'
+    value: '{{ dm__name }}'
+
+- name: Configure default display manager in X11
   template:
-    src: 'etc/gdm3/daemon.conf.j2'
-    dest: '/etc/gdm3/daemon.conf'
+    src: 'etc/X11/default-display-manager.j2'
+    dest: '/etc/X11/default-display-manager'
     owner: 'root'
     group: 'root'
-    mode: '644'
-  notify: [ 'Restart gdm' ]
+    mode: '0644'
+
+- name: Configure default display manager in systemd
+  file:
+    src: '/lib/systemd/system/{{ dm__package_map[dm__name] }}.service'
+    dest: '/etc/systemd/system/display-manager.service'
+    state: 'link'
+
+- name: Configure default session manager
+  alternatives:
+    name: 'x-session-manager'
+    path: '{{ dm__session_manager }}'
+  when: dm__session_manager != omit

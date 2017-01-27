@@ -1,0 +1,17 @@
+---
+# vim: foldmarker=[[[,]]]:foldmethod=marker
+
+- name: Divert GDM configuration
+  command: dpkg-divert --quiet --local --divert "/etc/gdm3/daemon.conf.dpkg-divert"
+           --rename "/etc/gdm3/daemon.conf"
+  args:
+    creates: '/etc/gdm3/daemon.conf.dpkg-divert'
+
+- name: Configure GDM
+  template:
+    src: 'etc/gdm3/daemon.conf.j2'
+    dest: '/etc/gdm3/daemon.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '644'
+  notify: [ 'Restart gdm' ]
