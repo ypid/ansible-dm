@@ -1,5 +1,3 @@
-.. _dm__ref_changelog:
-
 Changelog
 =========
 
