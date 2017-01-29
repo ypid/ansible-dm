@@ -17,6 +17,7 @@
     name: '{{ item }}'
     state: 'absent'
   with_flattened: '{{ dm__package_map | reject("equalto", dm__name) | list }}'
+  tags: [ 'role::dm:pkg' ]
 
 - include: 'gdm.yml'
   when: (dm__name == "gdm")

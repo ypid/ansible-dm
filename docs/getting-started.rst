@@ -21,14 +21,15 @@ To manage the display manager on a given host it should be included in the
 Example playbook
 ----------------
 
-If you are using this role without DebOps, here's an example Ansible playbook
-that uses the ``ypid.dm`` role:
+Here's an example playbook that uses the ``ypid.dm`` role:
 
 .. literalinclude:: playbooks/dm.yml
    :language: yaml
 
 This playbooks is shipped with this role under :file:`./docs/playbooks/dm.yml`
 from which you can symlink it to your playbook directory.
+In case you use multiple roles maintained by ypid_, consider
+using `ypid-ansible-common`_.
 
 Ansible tags
 ------------

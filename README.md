@@ -12,10 +12,10 @@
 
 Configure a selected display manager
 
-## Features
+Supported options are:
 
-* Configure autologin
-* Configure verbosity of the log files
+* [GNOME Display Manager](https://en.wikipedia.org/wiki/GNOME_Display_Manager)
+* [LightDM](https://en.wikipedia.org/wiki/LightDM)
 
 ### Installation
 

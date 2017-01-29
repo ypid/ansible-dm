@@ -22,9 +22,9 @@
 # * ``gdm``
 # * ``lightdm``
 #
-# Note the different display managers support a different set of features so
-# not all configuration that this role provides will have an effect depending on
-# this choice.
+# Note that the different display managers support a different set of features
+# so not all configuration options that this role provides will have an effect
+# depending on this choice.
 dm__name: 'lightdm'
 
                                                                    # ]]]
@@ -37,8 +37,8 @@ dm__name: 'lightdm'
 dm__package_map:
   lightdm: 'lightdm'
   gdm: 'gdm3'
-                                                                   # ]]]
 
+                                                                   # ]]]
 # .. envvar:: dm__packages [[[
 #
 # List of packages to install regardless of the selected display manager.
@@ -56,7 +56,6 @@ dm__lightdm_packages: []
 # Additional list of packages to install when GDM_ is selected.
 dm__gdm_packages:
   - 'libpam-gnome-keyring'
-
                                                                    # ]]]
                                                                    # ]]]
                                                                    # ]]]
@@ -65,8 +64,8 @@ dm__gdm_packages:
 
 # .. envvar:: dm__automatic_login_enabled [[[
 #
-# Should GDM do an automatic login for the user configured via
-# :envvar:`dm__automatic_login_user_name`?
+# Should the user configured by :envvar:`dm__automatic_login_user_name` be
+# automatically logged in?
 dm__automatic_login_enabled: False
 
                                                                    # ]]]
@@ -78,15 +77,15 @@ dm__automatic_login_user_name: 'user'
                                                                    # ]]]
 # .. envvar:: dm__automatic_login_time_delay [[[
 #
-# How long should GDM what until :envvar:`dm__automatic_login_user_name` is going to
-# be logged in to give other users the chance to login as there user?
+# How long should  what before :envvar:`dm__automatic_login_user_name` will be
+# logged in to give other users the chance to login as their user?
 dm__automatic_login_time_delay: 0
                                                                    # ]]]
                                                                    # ]]]
 # Greeter [[[
 # -----------
-#
-# .. warning:: Did not work when testing this feature with Debian Jessie.
+
+# .. warning:: Can not be configured for GDM_ in Debian jessie.
 #
 
 # .. envvar:: dm__greeter_include_all_users [[[
@@ -113,12 +112,13 @@ dm__greeter_time_show: True
 dm__greeter_time_format: '%F %T %a'
 
                                                                    # ]]]
-# .. envvar:: dm__greeter_time_format [[[
+# .. envvar:: dm__greeter_lightdm_indicators [[[
 #
 # List of indicators to show on the panel.
 dm__greeter_lightdm_indicators: '~host;~spacer;~clock;~spacer;~language;~session;~a11y;~power'
+
                                                                    # ]]]
-# .. envvar:: dm__greeter_time_format [[[
+# .. envvar:: dm__greeter_show_user_list [[[
 #
 # Should a list of users be shown?
 dm__greeter_show_user_list: False
@@ -155,7 +155,7 @@ dm__restart_on_configuration_change: False
 # File to the executable session manager file. If given, it will be configured
 # as the default session manager.
 #
-# You can check the available session managers using the
+# You can check the available session managers using
 # :command:`update-alternatives --list x-session-manager`.
 #
 # If this variable is set to the special value ``{{ omit }}``, the
