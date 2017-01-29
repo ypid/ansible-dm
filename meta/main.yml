@@ -26,6 +26,9 @@ galaxy_info:
   galaxy_tags:
     - workstation
     - desktop
+    - linuxondesktop
     - gdm
     - lightdm
+    - dm
+    - displaymanager
     - X11
