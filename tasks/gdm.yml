@@ -1,6 +1,14 @@
 ---
 # vim: foldmarker=[[[,]]]:foldmethod=marker
 
+- name: Ensure gdm3 directory is present
+  file:
+    path: '/etc/gdm3'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
 - name: Divert GDM configuration
   command: dpkg-divert --quiet --local --divert "{{ item }}.dpkg-divert"
            --rename "{{ item }}"

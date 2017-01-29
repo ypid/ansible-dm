@@ -11,6 +11,9 @@
   file:
     path: '/etc/lightdm/lightdm.conf.d'
     state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
 
 - name: Divert LightDM configuration
   command: dpkg-divert --quiet --local --divert "{{ item }}.dpkg-divert"
