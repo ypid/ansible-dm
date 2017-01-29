@@ -99,6 +99,29 @@ dm__greeter_include_all_users: False
 #
 # Only include selected logins in the greeter.
 dm__greeter_include_users: []
+
+                                                                   # ]]]
+# .. envvar:: dm__greeter_time_show [[[
+#
+# Should the greeter show the time?
+dm__greeter_time_show: True
+
+                                                                   # ]]]
+# .. envvar:: dm__greeter_time_format [[[
+#
+# :manpage:`strftime(3)` format string.
+dm__greeter_time_format: '%F %T %a'
+
+                                                                   # ]]]
+# .. envvar:: dm__greeter_time_format [[[
+#
+# List of indicators to show on the panel.
+dm__greeter_lightdm_indicators: '~host;~spacer;~clock;~spacer;~language;~session;~a11y;~power'
+                                                                   # ]]]
+# .. envvar:: dm__greeter_time_format [[[
+#
+# Should a list of users be shown?
+dm__greeter_show_user_list: False
                                                                    # ]]]
                                                                    # ]]]
 # Debugging [[[

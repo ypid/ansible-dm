@@ -1,16 +1,38 @@
 ---
 # vim: foldmarker=[[[,]]]:foldmethod=marker
 
+## https://wiki.ubuntu.com/LightDM
+## Configuration order:
+## /usr/share/lightdm/lightdm.conf.d/*.conf
+## /etc/lightdm/lightdm.conf.d/*.conf
+## /etc/lightdm/lightdm.conf
+
+- name: Ensure lightdm.conf.d directory is present
+  file:
+    path: '/etc/lightdm/lightdm.conf.d'
+    state: 'directory'
+
 - name: Divert LightDM configuration
-  command: dpkg-divert --quiet --local --divert "/etc/lightdm/lightdm.conf.dpkg-divert"
-           --rename "/etc/lightdm/lightdm.conf"
+  command: dpkg-divert --quiet --local --divert "{{ item }}.dpkg-divert"
+           --rename "{{ item }}"
   args:
-    creates: '/etc/lightdm/lightdm.conf.dpkg-divert'
+    creates: '{{ item }}.dpkg-divert'
+  with_items:
+    - '/etc/lightdm/lightdm-gtk-greeter.conf'
 
 - name: Configure LightDM
   template:
     src: 'etc/lightdm/lightdm.conf.j2'
-    dest: '/etc/lightdm/lightdm.conf'
+    dest: '//etc/lightdm/lightdm.conf.d/10_ypid_dm.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: [ 'Restart lightdm' ]
+
+- name: Configure LightDM greeter
+  template:
+    src: 'etc/lightdm/lightdm-gtk-greeter.conf.j2'
+    dest: '/etc/lightdm/lightdm-gtk-greeter.conf'
     owner: 'root'
     group: 'root'
     mode: '0644'
