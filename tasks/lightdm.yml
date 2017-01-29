@@ -20,6 +20,7 @@
            --rename "{{ item }}"
   args:
     creates: '{{ item }}.dpkg-divert'
+  when: not (dm__testing_mode|d(False) | bool)
   with_items:
     - '/etc/lightdm/lightdm-gtk-greeter.conf'
 
