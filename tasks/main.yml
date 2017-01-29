@@ -1,6 +1,12 @@
 ---
 # vim: foldmarker=[[[,]]]:foldmethod=marker
 
+- include: 'gdm.yml'
+  when: (dm__name == "gdm")
+
+- include: 'lightdm.yml'
+  when: (dm__name == "lightdm")
+
 - name: Ensure specified packages are in there desired state
   package:
     name: '{{ item }}'
@@ -18,12 +24,6 @@
     state: 'absent'
   with_flattened: '{{ dm__package_map | reject("equalto", dm__name) | list }}'
   tags: [ 'role::dm:pkg' ]
-
-- include: 'gdm.yml'
-  when: (dm__name == "gdm")
-
-- include: 'lightdm.yml'
-  when: (dm__name == "lightdm")
 
 - name: Configure default display manager in debconf
   debconf:

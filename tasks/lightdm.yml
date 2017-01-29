@@ -11,12 +11,16 @@
   file:
     path: '/etc/lightdm/lightdm.conf.d'
     state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
 
 - name: Divert LightDM configuration
   command: dpkg-divert --quiet --local --divert "{{ item }}.dpkg-divert"
            --rename "{{ item }}"
   args:
     creates: '{{ item }}.dpkg-divert'
+  when: not (dm__testing_mode|d(False) | bool)
   with_items:
     - '/etc/lightdm/lightdm-gtk-greeter.conf'
 
