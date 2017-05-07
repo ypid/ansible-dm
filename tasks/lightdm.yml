@@ -15,6 +15,14 @@
     group: 'root'
     mode: '0755'
 
+- name: Check lightdm version
+  environment:
+    LC_MESSAGES: 'C'
+  shell: dpkg-query -W -f='${Version}\n' '{{ dm__package_map[dm__name] }}' | cut -d- -f1
+  register: dm__register_lightdm_version
+  changed_when: False
+  failed_when: False
+
 - name: Divert LightDM configuration
   command: dpkg-divert --quiet --local --divert "{{ item }}.dpkg-divert"
            --rename "{{ item }}"
