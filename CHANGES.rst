@@ -26,6 +26,8 @@ Added
 - Support to set the default session manager using
   :envvar:`dm__session_manager`. [ypid_]
 
+- Support Debian Stretch. [ypid_]
+
 Chaneged
 ~~~~~~~~
 
