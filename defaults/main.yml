@@ -26,7 +26,7 @@
 # so not all configuration options that this role provides will have an effect
 # depending on this choice.
 dm__name: 'lightdm'
-
+                                                                   # ]]]
                                                                    # ]]]
 # Required packages [[[
 # ---------------------
@@ -56,7 +56,6 @@ dm__lightdm_packages: []
 # Additional list of packages to install when GDM_ is selected.
 dm__gdm_packages:
   - 'libpam-gnome-keyring'
-                                                                   # ]]]
                                                                    # ]]]
                                                                    # ]]]
 # User automatic login [[[
