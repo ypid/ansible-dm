@@ -1,10 +1,10 @@
 ---
 # vim: foldmarker=[[[,]]]:foldmethod=marker
 
-- include: 'gdm.yml'
+- import_tasks: 'gdm.yml'
   when: (dm__name == "gdm")
 
-- include: 'lightdm.yml'
+- import_tasks: 'lightdm.yml'
   when: (dm__name == "lightdm")
 
 - name: Ensure specified packages are in there desired state
