@@ -58,6 +58,17 @@ dm__gdm_packages:
   - 'libpam-gnome-keyring'
                                                                    # ]]]
                                                                    # ]]]
+# Login settings [[[
+# ------------------
+
+# .. envvar:: dm_user_session [[[
+#
+# The default session to configure. The file :file:`/usr/share/xsessions/{{
+# dm_user_session }}.desktop` must exist when you configure this.
+dm_user_session: '{{ omit }}'
+
+                                                                   # ]]]
+                                                                   # ]]]
 # User automatic login [[[
 # ------------------------
 

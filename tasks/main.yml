@@ -1,6 +1,12 @@
 ---
 # vim: foldmarker=[[[,]]]:foldmethod=marker
 
+- name: Ensure the default session to configure is available
+  file:
+    path: '/usr/share/xsessions/{{ dm_user_session }}.desktop'
+    state: 'file'
+  when: (dm_user_session != omit)
+
 - import_tasks: 'gdm.yml'
   when: (dm__name == "gdm")
 
