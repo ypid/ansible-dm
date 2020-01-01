@@ -28,7 +28,7 @@
   package:
     name: '{{ item }}'
     state: 'absent'
-  with_flattened: '{{ dm__package_map | reject("equalto", dm__name) | list }}'
+  with_flattened: '{% set list = [] %}{% for name in dm__package_map | reject("equalto", dm__name) | list %}{% set _ = list.append(dm__package_map[name]) %}{% endfor %}{{ list }}'
   tags: [ 'role::dm:pkg' ]
 
 - name: Configure default display manager in debconf
