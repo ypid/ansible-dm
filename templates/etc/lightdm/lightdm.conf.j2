@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
-{% if dm__register_lightdm_version | version_compare('1.11', '<') %}
+{% if dm__register_lightdm_version is version_compare('1.11', '<') %}
 [SeatDefaults]
 {% else %}
 [Seat:*]
