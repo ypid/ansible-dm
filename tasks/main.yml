@@ -7,12 +7,6 @@
     state: 'file'
   when: (dm_user_session != omit)
 
-- import_tasks: 'gdm.yml'
-  when: (dm__name == "gdm")
-
-- import_tasks: 'lightdm.yml'
-  when: (dm__name == "lightdm")
-
 - name: Ensure specified packages are in there desired state
   package:
     name: '{{ item }}'
@@ -23,6 +17,12 @@
     - '{{ dm__lightdm_packages if (dm__name == "lightdm") else [] }}'
     - '{{ dm__gdm_packages if (dm__name == "gdm") else [] }}'
   tags: [ 'role::dm:pkg' ]
+
+- import_tasks: 'gdm.yml'
+  when: (dm__name == "gdm")
+
+- import_tasks: 'lightdm.yml'
+  when: (dm__name == "lightdm")
 
 - name: Ensure alternative display managers are absent
   package:
