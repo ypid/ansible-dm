@@ -51,7 +51,7 @@
     src: '/lib/systemd/system/{{ dm__package_map[dm__name] }}.service'
     dest: '/etc/systemd/system/display-manager.service'
     state: 'link'
-  when: (ansible_distribution|d("") == "Debian")
+  when: (ansible_os_family|d("") == "Debian")
 
 - name: Configure default session manager
   alternatives:
