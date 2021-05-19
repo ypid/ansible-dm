@@ -1,12 +1,6 @@
 ---
 
-- name: Restart gdm
-  service:
-    name: 'display-manager'
-    state: 'restarted'
-  when: dm__restart_on_configuration_change | bool
-
-- name: Restart lightdm
+- name: Restart display-manager
   service:
     name: 'display-manager'
     state: 'restarted'

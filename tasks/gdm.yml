@@ -25,7 +25,7 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  notify: [ 'Restart gdm' ]
+  notify: [ 'Restart display-manager' ]
 
 - name: Configure dconf defaults
   template:
@@ -34,4 +34,4 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  notify: [ 'Restart gdm' ]
+  notify: [ 'Restart display-manager' ]
