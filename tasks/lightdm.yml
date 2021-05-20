@@ -39,7 +39,7 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  notify: [ 'Restart lightdm' ]
+  notify: [ 'Restart display-manager' ]
 
 - name: Configure LightDM greeter
   template:
@@ -48,4 +48,4 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  notify: [ 'Restart lightdm' ]
+  notify: [ 'Restart display-manager' ]
