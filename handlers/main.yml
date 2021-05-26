@@ -1,5 +1,9 @@
 ---
 
+- name: Reload systemd services
+  systemd:
+    daemon_reload: yes
+
 - name: Restart display-manager
   service:
     name: 'display-manager'
