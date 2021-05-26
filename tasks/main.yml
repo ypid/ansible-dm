@@ -16,6 +16,7 @@
     - '{{ dm__package_map[dm__name] }}'
     - '{{ dm__lightdm_packages if (dm__name == "lightdm") else [] }}'
     - '{{ dm__gdm_packages if (dm__name == "gdm") else [] }}'
+  notify: [ 'Reload systemd services', 'Restart display-manager' ]
   tags: [ 'role::dm:pkg' ]
 
 - import_tasks: 'gdm.yml'
@@ -51,6 +52,7 @@
     src: '/lib/systemd/system/{{ dm__package_map[dm__name] }}.service'
     dest: '/etc/systemd/system/display-manager.service'
     state: 'link'
+  notify: [ 'Reload systemd services', 'Restart display-manager' ]
   when: (ansible_os_family|d("") == "Debian")
 
 - name: Configure default session manager
