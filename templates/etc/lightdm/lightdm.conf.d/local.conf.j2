@@ -1,10 +1,6 @@
 # {{ ansible_managed }}
 
-{% if dm__register_lightdm_version.stdout is version_compare('1.11', '<') %}
-[SeatDefaults]
-{% else %}
 [Seat:*]
-{% endif %}
 
 {% if dm__automatic_login_enabled | bool %}
 autologin-user = {{ dm__automatic_login_user_name | string }}

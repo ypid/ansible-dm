@@ -15,27 +15,16 @@
     group: 'root'
     mode: '0755'
 
-- name: Check lightdm version
-  environment:
-    LC_MESSAGES: 'C'
-  shell: dpkg-query -W -f='${Version}\n' '{{ dm__package_map[dm__name] }}' | cut -d- -f1
-  register: dm__register_lightdm_version
-  changed_when: False
-  failed_when: False
-
 - name: Divert LightDM configuration
-  command: dpkg-divert --quiet --local --divert "{{ item }}.dpkg-divert"
-           --rename "{{ item }}"
-  args:
-    creates: '{{ item }}.dpkg-divert'
+  dpkg_divert:
+    path: '/etc/lightdm/lightdm-gtk-greeter.conf'
+    state: 'present'
   when: not (dm__testing_mode|d(False) | bool)
-  with_items:
-    - '/etc/lightdm/lightdm-gtk-greeter.conf'
 
 - name: Configure LightDM
   template:
-    src: 'etc/lightdm/lightdm.conf.j2'
-    dest: '//etc/lightdm/lightdm.conf.d/10_ypid_dm.conf'
+    src: 'etc/lightdm/lightdm.conf.d/local.conf.j2'
+    dest: '/etc/lightdm/lightdm.conf.d/10_ypid_dm.conf'
     owner: 'root'
     group: 'root'
     mode: '0644'
