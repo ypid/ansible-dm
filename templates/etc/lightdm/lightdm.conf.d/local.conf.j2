@@ -14,3 +14,4 @@ greeter-hide-users = {{ (not dm__greeter_show_user_list|bool) | lower }}
 {% if dm_user_session != omit %}
 user-session = {{ dm_user_session }}
 {% endif %}
+{{ dm__lightdm_seat_star_raw }}

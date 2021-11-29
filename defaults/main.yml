@@ -173,6 +173,15 @@ dm__restart_on_configuration_change: False
 dm__session_manager: '{{ omit }}'
                                                                    # ]]]
                                                                    # ]]]
+# Other settings [[[
+# ------------------
+
+# .. envvar:: dm__lightdm_seat_star_raw [[[
+#
+# Raw Seat:* settings.
+dm__lightdm_seat_star_raw: ''
+                                                                   # ]]]
+                                                                   # ]]]
 # Paths [[[
 # ---------
 
