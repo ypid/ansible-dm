@@ -16,7 +16,7 @@
     mode: '0755'
 
 - name: Divert LightDM configuration
-  dpkg_divert:
+  community.general.dpkg_divert:
     path: '/etc/lightdm/lightdm-gtk-greeter.conf'
     state: 'present'
   when: not (dm__testing_mode|d(False) | bool)
